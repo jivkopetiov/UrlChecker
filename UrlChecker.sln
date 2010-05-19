@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlChecker", "UrlChecker\UrlChecker.csproj", "{C4A0CFC6-65B7-4770-8077-6700BD1C05F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4A0CFC6-65B7-4770-8077-6700BD1C05F7}.Debug|x86.ActiveCfg = Debug|x86
+		{C4A0CFC6-65B7-4770-8077-6700BD1C05F7}.Debug|x86.Build.0 = Debug|x86
+		{C4A0CFC6-65B7-4770-8077-6700BD1C05F7}.Release|x86.ActiveCfg = Release|x86
+		{C4A0CFC6-65B7-4770-8077-6700BD1C05F7}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

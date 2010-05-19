@@ -1,0 +1,10 @@
+bin/
+obj/
+build.output/
+*.suo
+*.user
+*.manifest
+.DS_Store
+.svn
+_ReSharper*
+*.vspscc
