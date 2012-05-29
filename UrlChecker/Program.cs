@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Net.Cache;
 
 namespace UrlChecker
 {
@@ -11,6 +12,8 @@ namespace UrlChecker
 
         static void Main(string[] args)
         {
+            args = new[] { "http://google.bg" };
+
             if (args == null || args.Length == 0)
             {
                 PrintUsage();
@@ -62,13 +65,19 @@ namespace UrlChecker
                 request.Timeout = timeout * 1000;
                 request.ReadWriteTimeout = request.Timeout;
                 request.UserAgent = "UrlChecker v1.0";
+                request.AllowAutoRedirect = false;
                 request.Method = "HEAD";
+
+                var noCachePolicy = new HttpRequestCachePolicy(HttpRequestCacheLevel.NoCacheNoStore);
+                request.CachePolicy = noCachePolicy;
+
+                request.Headers[HttpRequestHeader.Pragma] = "no-cache";
+                request.Headers[HttpRequestHeader.CacheControl] = "no-cache";
 
                 stopwatch = Stopwatch.StartNew();
                 using (var response = (HttpWebResponse)request.GetResponse())
                 {
                     stopwatch.Stop();
-                    //response.
                     return new UrlResult(url, response, stopwatch.ElapsedMilliseconds);
                 }
             }
@@ -128,6 +137,8 @@ namespace UrlChecker
             Console.WriteLine("Elapsed: {0} milliseconds", result.Milliseconds);
             Console.WriteLine("Response url: " + result.ResponseUrl.AbsoluteUri);
             Console.WriteLine("Status: {0} {1}", (int)result.Status, result.Status);
+            Console.WriteLine("Content Length: " + result.ContentLength);
+            Console.WriteLine("Is From Cache: " + result.IsFromCache);
             Console.WriteLine();
             foreach (var key in result.Headers.AllKeys)
             {

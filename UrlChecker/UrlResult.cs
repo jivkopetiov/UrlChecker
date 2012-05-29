@@ -14,7 +14,10 @@ namespace UrlChecker
             Milliseconds = elapsedMilliseconds;
             ContentLength = response.ContentLength;
             Server = response.Server;
+            IsFromCache = response.IsFromCache;
         }
+
+        public bool IsFromCache { get; set; }
 
         public long ContentLength { get; private set; }
 
